@@ -26,7 +26,7 @@ const createInvoice = ({
 
   return axios({
     method: "post",
-    url: `https://api.strike.me/v1/invoices/handle/${username}`,
+    url: `https://api.next.strike.me/v1/invoices/handle/${username}`,
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",

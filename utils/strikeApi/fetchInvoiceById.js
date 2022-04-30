@@ -3,7 +3,7 @@ import axios from "axios";
 const fetchInvoiceById = (invoiceId) => {
   return axios({
     method: "get",
-    url: `https://api.strike.me/v1/invoices/${invoiceId}`,
+    url: `https://api.next.strike.me/v1/invoices/${invoiceId}`,
     headers: {
       Accept: "application/json",
       Authorization: `Bearer ${process.env.STRIKE_API_KEY}`,
