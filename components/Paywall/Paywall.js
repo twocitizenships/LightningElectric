@@ -12,10 +12,18 @@ import { getRedirectUrl } from "utils/invoice";
 import verifyPaidPaywall from "utils/verifyPaidPaywall";
 import {
   addPlebPayRefQueryParam,
+  changeColorRandom,
+  checkLightStatus,
   formatCurrency,
   makeProofOfPlebPayPath,
   normalizeUrl,
+  turnLightOff,
+  turnLightOn
 } from "./utils";
+import { check } from "prettier";
+import axios from "axios";
+import { waitUntilSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
+
 
 export default function Paywall({
   title,
@@ -108,11 +116,10 @@ export default function Paywall({
 
     if (isProofOfPlebPay && paidInvoiceId) {
       router.push(makeProofOfPlebPayPath(invoiceId, paidInvoiceId));
+      //changeColorRandom()
     } else if (!isProofOfPlebPay) {
-      window.location = addPlebPayRefQueryParam(
-        normalizeUrl(redirectUrl),
-        plebPayRef
-      );
+      changeColorRandom()
+      window.location = 'http://localhost:3000'
     }
   }, [
     redirectUrl,
@@ -139,7 +146,7 @@ export default function Paywall({
   return (
     <Box maxW={594}>
       <Heading as="h1" size="3xl" mb={8}>
-        {redirectUrl ? `You're in.` : title}
+        {redirectUrl ? `Let there be light.` : title}
       </Heading>
       <Flex direction="column" justifyContent="space-between" height={400}>
         {redirectUrl && (
