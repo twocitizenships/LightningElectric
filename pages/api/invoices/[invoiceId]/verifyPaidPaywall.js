@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         );
 
         // The JSON.parse check is to provide backwards compatability. When the app was launched, the values
-        // were accidentally being stored as strigified strings.
+        // were accidentally being stored as stringified strings.
         try {
           res
             .status(200)

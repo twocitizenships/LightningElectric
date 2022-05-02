@@ -27,7 +27,7 @@ export default function CreatePaywallLink({
       title: e.target.title.value,
       currency,
       amount: e.target.amount.value,
-      redirectUrl: e.target.redirectUrl.value,
+      redirectUrl: e.target.redirectUrl.value
     });
 
     setPaywallLink(paywallLink);
