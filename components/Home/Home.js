@@ -9,19 +9,34 @@ import {
   FormLabel,
   Link,
   Stack,
+  VStack,
   Box,
   Flex,
 } from "@chakra-ui/react";
 import Button from "../Button";
 import Input from "../Input";
+import createPaywallLink from "utils/createPaywallLink";
 
 export default function Home() {
   const router = useRouter();
+  const username = "clusk"
+  const { query } = useRouter();
+  const [paywallLink, setPaywallLink] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    router.push(`/create/${e.target.username.value}`);
+    const paywallLink = createPaywallLink({
+      username: "clusk",
+      title: "test",
+      currency: "USD",
+      amount: "0.01",
+      redirectUrl: "something.com"
+    });
+
+    setPaywallLink(paywallLink);
+    setIsLoading(false)
+    //setIsLoading(true);
+    //router.push(`/create/${username}`);
   };
 
   return (
@@ -29,14 +44,13 @@ export default function Home() {
       <Head>
         <meta
           property="og:title"
-          content="PlebPay ⚡ - Create a Bitcoin Lightning paywall and get paid directly to your Strike
-        account."
+          content="Lightning Electric ⚡ - Control Philips Hue Lightbulb with Lightning powered by Strike"
         />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/distracted-boyfriend-meme.jpeg" />
         <meta property="og:url" content="https://plebpay.com" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="PlebPay ⚡" />
+        <meta name="twitter:title" content="Lightning Electric Company ⚡" />
         <meta
           name="twitter:description"
           content="Create a Bitcoin Lightning paywall and get paid directly to your Strike
@@ -50,33 +64,28 @@ export default function Home() {
       <Flex height={626} direction="column" justifyContent="space-between">
         <Box maxW={388}>
           <Heading as="h1" size="3xl" mb={4}>
-            PlebPay ⚡️
+            Lightning Electric Company ⚡
           </Heading>
-          <Text mb={16}>
-            Create a Bitcoin Lightning paywall and get paid directly to your
-            Strike account.
+          <Text mb={8}>
+            Control Philips Hue with Lightning.  Powered by the Strike API.
           </Text>
           <form onSubmit={handleSubmit}>
-            <Stack
-              alignItems="flex-end"
-              spacing={4}
-              direction={{ base: "column", sm: "row" }}
-            >
-              <FormControl>
-                <FormLabel>Strike Username</FormLabel>
-                <Input
-                  name="username"
-                  placeholder="jack"
-                  autoFocus
-                  required
-                  autoComplete="off"
-                />
-              </FormControl>
-              <Button isLoading={isLoading} type="submit">
-                OK
-              </Button>
-            </Stack>
-          </form>
+        <Text fontSize="xs" color="face.tertiary" mb={8}>
+          By clicking &quot;Change The Light,&quot; you agree to our{" "}
+          <Link href="https://strike.me/legal/tos/" isExternal>
+            Terms
+          </Link>{" "}
+          and{" "}
+          <Link href="https://strike.me/legal/privacy/" isExternal>
+            Privacy Notice
+          </Link>
+        </Text>
+        <Button isLoading={isLoading} type="submit" mb={8} >
+          Change The Light
+        </Button>
+
+      </form>
+
         </Box>
         <Text>
           Need a username?{" "}
@@ -87,7 +96,7 @@ export default function Home() {
         </Text>
       </Flex>
       <a
-        href="https://github.com/SamSamskies/strike-paywall"
+        href="https://github.com/twocitizenships/LightningElectric"
         style={{ position: "fixed", top: 0, right: 0 }}
         target="_blank"
         rel="noreferrer"
